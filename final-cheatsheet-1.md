@@ -8,7 +8,7 @@
 struct Node {
     int data;             // Value stored in node
     struct Node* next;    // Pointer to next node
-};
+}; // Singly Linked List Node
 
 // Creating a new node
 struct Node* createNode(int value) {
@@ -16,7 +16,7 @@ struct Node* createNode(int value) {
     newNode->data = value;
     newNode->next = NULL;
     return newNode;
-}
+} // insertion (at beginning)
 
 // Insert at beginning
 void insertAtBeginning(struct Node** head, int value) {
@@ -250,6 +250,15 @@ struct TreeNode* insert(struct TreeNode* root, int value) {
     return root;
 }
 
+// Insertion Visualisation
+```
+      5
+     / \
+    2   8
+   / \
+  1   3
+```
+
 // Search for a value
 struct TreeNode* search(struct TreeNode* root, int value) {
     if (root == NULL || root->data == value)
@@ -412,6 +421,23 @@ int arr[5] = {1, 2, 3, 4, 5};
 int* p = arr;            // Points to first element
 p++;                     // Points to second element
 *(arr + 2);              // Access third element (same as arr[2])
+
+### 🔹 Single, Double, and Triple Pointers
+
+- **Single pointer (`int *p`)**: Points to an integer.
+- **Double pointer (`int **pp`)**: Points to a pointer to an integer.
+- **Triple pointer (`int ***ppp`)**: Points to a pointer to a pointer to an integer.
+
+Used in complex data structures, dynamic memory allocation, and passing by reference multiple layers deep.
+
+**Example:**
+```c
+int x = 10;
+int *p = &x;
+int **pp = &p;
+int ***ppp = &pp;
+
+printf("%d\n", ***ppp); // 10
 ```
 
 ### Functions
@@ -506,19 +532,38 @@ int factorial(int n) {
     return n * factorial(n - 1);
 }
 ```
+#### Recursion Analysis tips
+- Identify the base case and recursive case
+- Check how many calls are made in each call
+- Track call stack depth
+- Convert to recurrence relation if needed
+- Watch for overlapping subproblems → use memoization when needed
 
-**Memoization**: Technique to store computed results to avoid redundant calculations in recursive functions.
+
+**Memoization** is an optimization technique used in recursive algorithms to **cache (store)** the results of expensive function calls and return the cached result when the same inputs occur again.
+
+This is especially helpful when a function is called multiple times with the same arguments, like in recursive Fibonacci, which has **overlapping subproblems**.
+
+Without memoization, many values are recalculated repeatedly:
+- `fib(5)` calls `fib(4)` and `fib(3)`
+- `fib(4)` again calls `fib(3)` and `fib(2)`
+- `fib(3)` gets called multiple times...
+
+With memoization, once a value like `fib(3)` is calculated, it’s stored and reused.
+
+---
+
+#### 🔁 Recursive Fibonacci **with Memoization**
 ```c
-// Fibonacci with memoization
+// Memoized Fibonacci implementation
 int fib(int n, int memo[]) {
-    if (memo[n] != -1) 
+    if (memo[n] != -1)        // Check if result is already computed
         return memo[n];
-    if (n <= 1)
+    if (n <= 1)               // Base cases
         return n;
-    memo[n] = fib(n-1, memo) + fib(n-2, memo);
+    memo[n] = fib(n-1, memo) + fib(n-2, memo);  // Store result before returning
     return memo[n];
 }
-```
 
 **Recursion Trade-offs**:
 - Advantages: Elegant, concise, better for some problems (tree traversal)
