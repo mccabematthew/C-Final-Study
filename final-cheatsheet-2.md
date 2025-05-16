@@ -203,6 +203,28 @@ int add(int a, int b) { return a + b; }
 
 ---
 
+## Switch Statements in C
+
+### Purpose
+In C, a `switch` statement is used to perform different actions based on the value of an integer or character expression. It is often more readable than long `if-else if` chains.
+
+---
+
+### Syntax
+
+```c
+switch (expression) {
+  case constant1:
+    // Code to execute if expression == constant1
+    break;
+  case constant2:
+    // Code to execute if expression == constant2
+    break;
+  // more cases...
+  default:
+    // Code to execute if none of the cases match
+}
+
 ## 🔢 Command Line Args
 
 ```c
