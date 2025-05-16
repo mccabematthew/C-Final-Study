@@ -133,6 +133,15 @@ fclose(f);
 - Modes: "r", "w", "r+", "a", "w+"
 - Skip CSV column: `%*[^,]`
 
+## 📥 `fgets()`
+
+**Reads a line of input** from `stdin` or a file. It’s safer than `scanf` because it prevents buffer overflow.
+
+### 🔹 Syntax:
+```c
+char *fgets(char *str, int size, FILE *stream);
+
+
 ---
 
 ## 🧠 Recursion
